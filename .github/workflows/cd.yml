@@ -1,0 +1,26 @@
+name: deploy
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install Koyeb CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/koyeb/koyeb-cli/master/install.sh | sh
+          sudo mv ./koyeb /usr/local/bin/
+      
+      - name: Login to Koyeb
+        run: koyeb login ${{ secrets.KOYEB_TOKEN }}
+        
+      - name: Deploy to Koyeb
+        run: |
+          koyeb service redeploy fastapi-book-project

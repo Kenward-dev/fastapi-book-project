@@ -84,7 +84,7 @@ uvicorn main:app
 ### Books
 
 - `GET /api/v1/books/` - Get all books
-- `GET /api/v1/books/{book_id}` - Get a specific book
+- `GET /api/v1/books/{book_id}` - Get a specific book(new feature)
 - `POST /api/v1/books/` - Create a new book
 - `PUT /api/v1/books/{book_id}` - Update a book
 - `DELETE /api/v1/books/{book_id}` - Delete a book

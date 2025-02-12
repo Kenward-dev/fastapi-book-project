@@ -27,10 +27,10 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd /home/${{ secrets.EC2_USERNAME }}/bookAPI
+            cd /home/${{ secrets.EC2_USERNAME }}/bookAPI/fastapi-book-project
             git pull origin main
+            cd ..
             source hng/bin/activate
             cd fastapi-book-project
             pip install -r requirements.txt
-            cd ..
             sudo systemctl restart fastapi.service
